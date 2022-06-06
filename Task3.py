@@ -1,6 +1,6 @@
-# file = input("Введите название файла: ")
+file = input("Введите название файла: ")
 with open("code.txt", "r") as f:
-    text = f.read().replace(" ", "")
+    text = f.read()
 n = 0
 eq = 0
 srez = []
@@ -9,30 +9,30 @@ names = []
 massive = []
 arguments = (text[text.find("(") + 1:text.find(")")].split(","))
 for i in range(len(text)):
-    if text[i] == "\n":
+    if text[i] == "\t" or text[i] == "\n":
         n = i
     if text[i] == "=":
-        if text[i - 1] == "0" or text[i - 1] == "O":
+        if text[i - 5] == "0" or text[i - 5] == "O":
             eq = i
             srez.append(n)
             srez.append(eq)
 n = 0
 eq = 0
 for i in range(len(text)):
-    if text[i] == "\n":
+    if text[i] == "\t" or text[i] == "\n":
         n = i
     if text[i] == "[":
-        if text[i - 1] == "=":
+        if "=" in text[i-5:i]:
             eq = i
             srez1.append(n)
             srez1.append(eq)
 for i in range(0, len(srez), 2):
     if i + 1 < len(srez):
         if text[srez[i + 1] + 1] != "[":
-            names.append(text[srez[i] + 1:srez[i + 1]])
+            names.append(text[srez[i] + 1:srez[i + 1]].replace(" ",""))
 for i in range(0, len(srez1), 2):
     if i + 1 < len(srez1):
-        massive.append(text[srez1[i] + 1:srez1[i + 1] - 1])
+        massive.append(text[srez1[i] + 1:srez1[i + 1] - 1].replace(" ",""))
 arguments = list(set(arguments))
 massive = list(set(massive))
 for i in range(len(arguments)):
