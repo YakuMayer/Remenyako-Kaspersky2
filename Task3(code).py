@@ -1,5 +1,5 @@
 file = input("Введите название файла: ")
-with open("code.txt", "r") as f:
+with open(file, "r") as f:
     text = f.read()
 n = 0
 eq = 0
